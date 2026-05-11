@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-volc_crtctr() {
+volc_crtctr_deploy() {
   _info "Starting Volcengine Certificate Upload..."
 
   VOLC_AK="${VOLC_AK:-$VOLCENGINE_ACCESS_KEY_ID}"
@@ -80,5 +80,5 @@ if [ -z "$_main_domain" ]; then
     _main_domain="$DOMAIN"
     REAL_FULLCHAIN_PATH="$CERT_PATH"
     REAL_KEY_PATH="$KEY_PATH"
-    volc_upload_deploy
+    volc_crtctr_deploy
 fi
