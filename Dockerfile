@@ -1,7 +1,10 @@
-FROM debian:stable as builder
+FROM debian:stable AS builder
 
 ARG VC_VERSION=1.0.40
 ARG TARGETARCH
+
+RUN echo ${VC_VERSION}
+RUN echo ${TARGETARCH}
 
 RUN apt update && apt install -y unar
 
