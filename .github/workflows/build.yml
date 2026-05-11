@@ -1,0 +1,43 @@
+name: Build
+on: 
+  push: {}
+  workflow_dispatch: {}
+  schedule:
+    - cron: '30 3 * * *'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set Docker image tag version
+        id: image-name
+        run: |
+          case "$GITHUB_REF" in
+            refs/heads/main)
+              TAG=latest;;
+            *)
+              echo "Branch not recognized" >&2
+              exit;;
+          esac
+
+          : ${TAG:=latest}
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+          echo "name=yangzhaofengsteven/acme.sh:$TAG" >> $GITHUB_OUTPUT
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+      - name: Login to Docker Hub
+        if: "github.repository == 'yangzhaofeng/acme.sh-volcanoengine'"
+        uses: docker/login-action@v4
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASS }}
+      - name: Build multi-arch image
+        run: |
+          IMAGE="${{ steps.image-name.outputs.name }}"
+          PUSH_FLAG="--load"
+          if [ "${{ github.repository }}" = "yangzhaofeng/acme.sh-volcanoengine" ]; then
+            PUSH_FLAG="--push"
+          fi
+          docker buildx build --platform linux/amd64,linux/arm64 "$PUSH_FLAG" -t "$IMAGE" .
