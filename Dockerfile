@@ -13,7 +13,7 @@ RUN unar volcengine-cli.zip
 
 FROM neilpang/acme.sh:latest
 
-COPY volcengine_dns_api/dns_volcengine.sh /acmebin/dnsapi/
+COPY acme_volcengine_dns_api/dnsapi/dns_volcengine.sh /acmebin/dnsapi/
 COPY upload_cert.sh /acmebin/
 
 COPY --from=builder /tmp/volcengine-cli/ve /usr/local/bin

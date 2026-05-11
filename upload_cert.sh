@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 FULLCHAIN_PEM="$(cat /acme.sh/$DOMAIN/fullchain.cer)"
 KEY_PEM="$(cat /acme.sh/$DOMAIN/$DOMAIN.key)"
