@@ -13,6 +13,8 @@ RUN unar volcengine-cli.zip
 
 FROM neilpang/acme.sh:latest
 
+RUN apk add --no-cache jq
+
 COPY acme_volcengine_dns_api/dnsapi/dns_volcengine.sh /acmebin/dnsapi/
 COPY upload_cert.sh /acmebin/
 
