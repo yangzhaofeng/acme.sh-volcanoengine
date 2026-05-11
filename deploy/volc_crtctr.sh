@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-volc_upload_deploy() {
+volc_crtctr() {
   _info "Starting Volcengine Certificate Upload..."
 
   VOLC_AK="${VOLC_AK:-$VOLCENGINE_ACCESS_KEY_ID}"
@@ -21,8 +21,8 @@ volc_upload_deploy() {
   _key_content=$(cat "$REAL_KEY_PATH")
   _cert_name="acme-$(echo "$_main_domain" | tr '.' '-')-$(date +%s)"
 
-  _service="certificate_service"
-  _host="certificate_service.volcengineapi.com"
+  _service="certificate-service"
+  _host="certificate-service.volcengineapi.com"
   _action="UploadCertificate"
   _version="2021-02-01"
   _timestamp=$(date -u +%Y%m%dT%H%M%SZ)
