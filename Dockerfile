@@ -4,7 +4,10 @@ ARG VC_VERSION=1.0.40
 
 RUN apt update && apt install -y unar
 
-RUN cd /tmp && wget "https://github.com/volcengine/volcengine-cli/releases/download/v${VC_VERSION}/volcengine-cli_${VC_VERSION}_linux_${TARGETARCH}.zip" -O volcengine-cli.zip && unar volcengine-cli.zip
+WORKDIR /tmp
+
+RUN wget "https://github.com/volcengine/volcengine-cli/releases/download/v${VC_VERSION}/volcengine-cli_${VC_VERSION}_linux_${TARGETARCH}.zip" -O volcengine-cli.zip
+RUN unar volcengine-cli.zip
 
 
 FROM neilpang/acme.sh:latest
