@@ -1,5 +1,8 @@
 FROM neilpang/acme.sh:latest
 
-COPY volcengine_dns_api/dns_volcengine.sh /install_acme.sh/dnsapi
+ARG VC_VERSION=1.0.40
 
-COPY deploy/volc_crtctr.sh /install_acme.sh/deploy
+COPY volcengine_dns_api/dns_volcengine.sh /install_acme.sh/dnsapi
+COPY upload_cert.sh /install_acme.sh
+
+RUN cd /tmp && wget "https://github.com/volcengine/volcengine-cli/releases/download/v${VC_VERSION}/volcengine-cli_${VC_VERSION}_linux_${TARGETARCH}.zip"
