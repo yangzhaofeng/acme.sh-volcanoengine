@@ -1,0 +1,3 @@
+[submodule "volcengine_dns_api"]
+	path = volcengine_dns_api
+	url = https://github.com/mitkimi/acmesh_volcengine_api
