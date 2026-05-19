@@ -1,4 +1,0 @@
-[submodule "acme_volcengine_dns_api"]
-	path = acme_volcengine_dns_api
-	url = https://github.com/wenxuan70/acme.sh.git
-	branch = volcengine_dnsapi
