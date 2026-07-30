@@ -1,6 +1,6 @@
 FROM debian:stable AS builder
 
-ARG VC_VERSION=1.0.40
+ARG VC_VERSION=1.0.52
 ARG TARGETARCH
 
 RUN apt update && apt install -y unar wget
